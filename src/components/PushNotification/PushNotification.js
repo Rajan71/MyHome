@@ -32,14 +32,8 @@ const PushNotification = () => {
     }
 
     async function onMessageReceived(message) {
-        // setForceUpdate(!forceUpdate);
         //Foreground Notification
-        // console.log('message received', message);
-        // console.log('showing the local notification');
-
         const { data, notification } = message;
-        // console.log('NOTI COUNT FROM REDUCER : ');
-        // common.onCreateTriggerNotification()
         const channelId = await notifee.createChannel({
             id: 'default',
             name: 'Default Channel',
