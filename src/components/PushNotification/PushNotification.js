@@ -66,7 +66,7 @@ const PushNotification = () => {
             data: data,
             android: {
                 channelId,
-                largeIcon: !!data?.image ? data?.image : '',
+                // largeIcon: !!data?.image ? data?.image : '',
             },
 
             ios: {
