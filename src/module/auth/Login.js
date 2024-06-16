@@ -1,5 +1,5 @@
 import React, { useRef, useState, createContext, useContext } from "react";
-import { View, Image, Text } from 'react-native';
+import { View, Image, Text, ScrollView } from 'react-native';
 import styles from './LoginStyles'
 import { Images } from "../../assets";
 import { CustomButton, CustomInput, showToast } from "../../components";
@@ -34,40 +34,41 @@ const Login = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <Image source={Images.myHome} style={styles.headerView} resizeMode="cover" />
-            <Text style={styles.titleText}>{`Log in to your account`}</Text>
-            <View style={styles.innerView}>
+            <ScrollView>
+                <Text style={styles.titleText}>{`Log in to your account`}</Text>
+                <View style={styles.innerView}>
 
-                <CustomInput
-                    title={'Email'}
-                    value={email}
-
-                    placeholder={`Enter your email`}
-                    returnKeyType={'next'}
-                    autoCapitalize={'none'}
-                    onChangeText={(val) => {
-                        const inputValue = val.replace(/\s/g, '');
-                        setEmail(inputValue)
-                    }}
-                    onSubmitEditing={() => {
-                        passwordRef?.current?.focus()
-                    }} />
-                <View style={{ marginTop: vh(20) }}>
                     <CustomInput
-                        inputRef={passwordRef}
-                        isIconShown
-                        secureTextEntry
-                        title={'Password'}
-                        value={password}
-                        returnKeyType={'done'}
-                        placeholder={`Enter your password`}
-                        onChangeText={(val) => setPassword(val)} />
+                        title={'Email'}
+                        value={email}
+                        placeholder={`Enter your email`}
+                        returnKeyType={'next'}
+                        autoCapitalize={'none'}
+                        onChangeText={(val) => {
+                            const inputValue = val.replace(/\s/g, '');
+                            setEmail(inputValue)
+                        }}
+                        onSubmitEditing={() => {
+                            passwordRef?.current?.focus()
+                        }} />
+                    <View style={{ marginTop: vh(20) }}>
+                        <CustomInput
+                            inputRef={passwordRef}
+                            isIconShown
+                            secureTextEntry
+                            title={'Password'}
+                            value={password}
+                            returnKeyType={'done'}
+                            placeholder={`Enter your password`}
+                            onChangeText={(val) => setPassword(val)} />
+                    </View>
+                    <CustomButton
+                        title={`Log In`}
+                        disabled={isDisabled}
+                        isLoading={loading}
+                        onPressButton={onPressLogin} />
                 </View>
-                <CustomButton
-                    title={`Log In`}
-                    disabled={isDisabled}
-                    isLoading={loading}
-                    onPressButton={onPressLogin} />
-            </View>
+            </ScrollView>
 
         </View>
     )

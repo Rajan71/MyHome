@@ -12,6 +12,7 @@ const CustomInput = (props) => {
         inputRef,
         autoCapitalize,
         secureTextEntry,
+        onSubmitEditing,
         ...rest
     } = props
     const [visibleIcon, setVisibleIcon] = useState(false)
@@ -26,8 +27,10 @@ const CustomInput = (props) => {
                     returnKeyType={returnKeyType}
                     onChangeText={onChangeText}
                     placeholder={placeholder}
+                    onSubmitEditing={onSubmitEditing}
                     autoCapitalize={autoCapitalize}
-                    secureTextEntry={(secureTextEntry && !visibleIcon) ? true : false} />
+                    secureTextEntry={(secureTextEntry && !visibleIcon) ? true : false}
+                    {...rest} />
                 {!!isIconShown && <Pressable
                     onPress={() => setVisibleIcon(!visibleIcon)}>
                     <Icon name={!visibleIcon ? `eye-off` : 'eye'} size={vh(20)} />
