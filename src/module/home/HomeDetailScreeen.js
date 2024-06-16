@@ -1,14 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, Pressable, Image, ImageBackground } from 'react-native';
 import styles from "./HomeDetailStyles";
 import Icon from 'react-native-vector-icons/Ionicons'
 import { Images } from "../../assets";
 import { goBack, vh, vw } from "../../utils";
-import { CustomButton } from "../../components";
+import { CustomButton, showToast } from "../../components";
 
 
 const HomeDetailScreen = (props) => {
     const route = props?.route?.params?.home
+    const [loading, setLoading] = useState(false)
+    const onPressUnlock = () => {
+        setLoading(true)
+        setTimeout(() => {
+            setLoading(false)
+            showToast({ message: 'Congratulations, your home is unlocked !', isError: false })
+        }, 1000)
+    }
     return (
         <View style={styles.container}>
             <ImageBackground source={Images.myHome} style={styles.headerView} >
@@ -27,7 +35,9 @@ const HomeDetailScreen = (props) => {
                 <Text style={styles.listTxt}>{`${`Age: `}${route?.age}`}</Text>
                 <Text numberOfLines={2} style={styles.listTxt}>{`${`Address: `}${route?.address}`}</Text>
                 <Text numberOfLines={2} style={styles.listTxt}>{`${`Distance: `}${route?.distance} m`}</Text>
-                {route?.distance <= 30 ? <CustomButton title={`Unlock`} /> : null}
+                {route?.distance <= 30 ? <CustomButton title={`Unlock`}
+                    isLoading={loading}
+                    onPressButton={onPressUnlock} /> : null}
             </View>
 
 
