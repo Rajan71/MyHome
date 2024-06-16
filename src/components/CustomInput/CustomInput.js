@@ -3,6 +3,7 @@ import { View, Text, TextInput, Pressable } from 'react-native';
 import styles from './CustomInputStyles'
 import { vh } from "../../utils";
 import Icon from 'react-native-vector-icons/Feather'
+import useCustomInput from "./useCustomInput";
 
 const CustomInput = (props) => {
     const {
@@ -12,9 +13,11 @@ const CustomInput = (props) => {
         inputRef,
         autoCapitalize,
         secureTextEntry,
+        onSubmitEditing,
         ...rest
     } = props
     const [visibleIcon, setVisibleIcon] = useState(false)
+    const { submitEditing, onKeyPress } = useCustomInput(props)
     return (
         <>
             <Text>{title}</Text>
@@ -27,7 +30,10 @@ const CustomInput = (props) => {
                     onChangeText={onChangeText}
                     placeholder={placeholder}
                     autoCapitalize={autoCapitalize}
-                    secureTextEntry={(secureTextEntry && !visibleIcon) ? true : false} />
+                    onSubmitEditing={onSubmitEditing ?? submitEditing}
+                    secureTextEntry={(secureTextEntry && !visibleIcon) ? true : false}
+                    onKeyPress={onKeyPress}
+                    {...rest} />
                 {!!isIconShown && <Pressable
                     onPress={() => setVisibleIcon(!visibleIcon)}>
                     <Icon name={!visibleIcon ? `eye-off` : 'eye'} size={vh(20)} />
