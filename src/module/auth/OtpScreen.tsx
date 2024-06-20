@@ -7,11 +7,11 @@ import useOtpFormik from "./useOtpFormik";
 import OtpVerificationForm from "./OtpVerificationForm";
 
 
-const OtpScreen = () => {
+const OtpScreen = (props) => {
     // const formik = useOtpFormik()
     // const {otpRefList, otp, handleTextChange} = formik;
     const { otpVerificationFormik } = useOtpFormik()
-    const { otpRefList, otp, handleTextChange } = useOtpVerification(props)
+    // const { otpRefList, otp, handleTextChange } = useOtpVerification(props)
     return (
         <View style={styles.container}>
             <OtpVerificationForm {...otpVerificationFormik} />

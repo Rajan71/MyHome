@@ -8,7 +8,7 @@ const styles =
             borderColor: '#D5DBE9',
             height: vh(46),
             marginTop: vh(5),
-            width: '100%',
+            width: '10%',
             borderRadius: vh(6),
             backgroundColor: '#F8F9FC',
             paddingHorizontal: vw(16),

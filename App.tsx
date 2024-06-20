@@ -3,6 +3,7 @@ import { Platform, SafeAreaView, StatusBar } from "react-native";
 import RootNavigator from "./src/Navigation/AppNavigation";
 import Toast from 'react-native-toast-message';
 import HomeProvider from "./src/context/HomeContextProvide";
+import { OtpScreen } from "./src/module";
 
 const CustomStatusBar = () => {
   const statusBarStyle = 'light-content';
@@ -24,7 +25,7 @@ const App = () => {
       <CustomStatusBar />
       <HomeProvider>
         <SafeAreaView style={{ flex: 1 }}>
-          <RootNavigator />
+          <OtpScreen />
           <Toast />
         </SafeAreaView>
       </HomeProvider>
